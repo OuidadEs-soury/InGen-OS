@@ -2,8 +2,10 @@ import styles from "./BootSequence.module.css";
 
 import { useBootSequence } from "../../../hooks/useBootSequence";
 
+import ProgressBar from "../ProgressBar/ProgressBar";
+
 function BootSequence() {
-  const { messages } = useBootSequence();
+  const { messages, progress } = useBootSequence();
 
   return (
     <div className={styles.container}>
@@ -11,13 +13,21 @@ function BootSequence() {
 
       <div className={styles.terminal}>
         {messages.map((message, index) => (
-          <p
+          <div
+            className={styles.row}
             key={index}
-            className={styles.line}
           >
-            &gt; {message}
-          </p>
+            <span className={styles.command}>
+              &gt; {message.text}
+            </span>
+
+            <span className={styles.status}>
+              [{message.status}]
+            </span>
+          </div>
         ))}
+
+        <ProgressBar value={progress} />
       </div>
     </div>
   );
