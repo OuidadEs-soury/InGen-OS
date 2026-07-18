@@ -1,42 +1,30 @@
 import { useEffect, useState } from "react";
-
-const bootMessages = [
-  "Initializing InGen Kernel...",
-  "Loading Genetic Database...",
-  "Checking Electric Fence Network...",
-  "Connecting to Isla Nublar...",
-  "Starting DNA Sequencer...",
-  "Authenticating Personnel...",
-  "Loading Dinosaur Registry...",
-  "System Ready."
-];
+import { bootMessages } from "../utils/bootMessages";
 
 export function useBootSequence() {
-  const [messages, setMessages] = useState<string[]>([]);
-  const [finished, setFinished] = useState(false);
+  const [messages, setMessages] = useState<typeof bootMessages>([]);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     let index = 0;
 
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       setMessages((prev) => [...prev, bootMessages[index]]);
 
       index++;
 
+      setProgress((index / bootMessages.length) * 100);
+
       if (index === bootMessages.length) {
-        clearInterval(interval);
-
-        setTimeout(() => {
-          setFinished(true);
-        }, 1500);
+        clearInterval(timer);
       }
-    }, 700);
+    }, 800);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, []);
 
   return {
     messages,
-    finished,
+    progress,
   };
 }
