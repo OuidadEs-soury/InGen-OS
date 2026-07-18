@@ -1,0 +1,43 @@
+.row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+    animation:fadeIn .3s ease;
+
+}
+
+.command{
+
+    color:#73ff92;
+
+    font-family:monospace;
+
+}
+
+.status{
+
+    color:var(--accent);
+
+    font-family:monospace;
+
+}
+
+.cursor{
+
+    animation:blink .8s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+
+        opacity:0;
+
+    }
+
+}
