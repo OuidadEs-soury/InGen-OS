@@ -1,0 +1,173 @@
+.container {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(202, 168, 77, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #050608,
+      #0b0f15
+    );
+
+  animation: fadeIn 1.2s ease;
+}
+
+.accessPanel {
+  width: min(560px, 100%);
+
+  padding: 3rem;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  background: rgba(16, 21, 29, 0.88);
+
+  box-shadow: var(--shadow);
+}
+
+.emblem {
+  width: 72px;
+  height: 72px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 2rem;
+
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+
+  color: var(--accent);
+
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.heading {
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.75rem;
+
+  color: var(--accent);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.heading h1 {
+  margin-bottom: 1rem;
+
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  letter-spacing: 0.03em;
+}
+
+.heading p:last-child {
+  max-width: 440px;
+
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.form label {
+  color: var(--text-muted);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 1rem;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+
+  color: var(--accent);
+
+  background: var(--bg-primary);
+}
+
+.inputWrapper:focus-within {
+  border-color: var(--accent);
+}
+
+.inputWrapper input {
+  width: 100%;
+
+  color: var(--text);
+
+  font-family: monospace;
+  letter-spacing: 0.08em;
+}
+
+.inputWrapper input::placeholder {
+  color: #596576;
+}
+
+.form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  margin-top: 0.75rem;
+  padding: 1rem;
+
+  border-radius: var(--radius-sm);
+
+  color: #0a0a0a;
+  background: var(--accent);
+
+  font-weight: 800;
+  letter-spacing: 0.08em;
+
+  transition:
+    transform var(--transition),
+    background var(--transition);
+}
+
+.form button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.footer {
+  margin-top: 2.5rem;
+
+  color: var(--text-muted);
+
+  font-family: monospace;
+  font-size: 0.65rem;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 600px) {
+  .accessPanel {
+    padding: 1.5rem;
+  }
+}
