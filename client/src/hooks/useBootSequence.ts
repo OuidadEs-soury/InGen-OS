@@ -4,27 +4,40 @@ import { bootMessages } from "../utils/bootMessages";
 export function useBootSequence() {
   const [messages, setMessages] = useState<typeof bootMessages>([]);
   const [progress, setProgress] = useState(0);
+  const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     let index = 0;
 
-    const timer = setInterval(() => {
-      setMessages((prev) => [...prev, bootMessages[index]]);
+    const timer = window.setInterval(() => {
+      if (index >= bootMessages.length) {
+        window.clearInterval(timer);
 
-      index++;
+        window.setTimeout(() => {
+          setFinished(true);
+        }, 1800);
 
-      setProgress((index / bootMessages.length) * 100);
-
-      if (index === bootMessages.length) {
-        clearInterval(timer);
+        return;
       }
-    }, 800);
 
-    return () => clearInterval(timer);
+      setMessages((previousMessages) => [
+        ...previousMessages,
+        bootMessages[index],
+      ]);
+
+      index += 1;
+
+      setProgress(Math.round((index / bootMessages.length) * 100));
+    }, 1000);
+
+    return () => {
+      window.clearInterval(timer);
+    };
   }, []);
 
   return {
     messages,
     progress,
+    finished,
   };
 }
